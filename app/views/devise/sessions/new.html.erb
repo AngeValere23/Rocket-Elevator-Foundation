@@ -1,0 +1,112 @@
+<!-- -->
+<section>
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LOGIN -->
+
+            <div class="col-md-12 col-sm-12">
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+                <!-- login form -->
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'sky-form boxed'}) do |f| %>
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <header class="fs-18 mb-20">
+                    I'm a returning customer
+                </header>
+
+                <fieldset class="m-0">
+                    <label class="input mb-10">
+                        <i class="ico-append fa fa-envelope"></i>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address", required: "required" %>
+                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                    </label>
+
+                    <label class="input mb-10">
+                        <i class="ico-append fa fa-lock"></i>
+                        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: "required" %>
+                        <b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+                    </label>
+                    <% if devise_mapping.rememberable? %>
+                    <label class="checkbox fw-300">
+                        <%= f.check_box :remember_me, name: "checkbox-inline" %>
+                        <i></i> Keep me logged in
+                    </label>
+                    <% end %>
+
+                </fieldset>
+
+                <footer>
+                    <%= recaptcha_tags %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary rad-0 float-right") do %>
+                    <i class="fa fa-check"></i> OK, LOG IN
+                    <% end %>
+                </footer>
+
+                <% end %>
+                <!-- /login form -->
+            </div>
+            <!-- /LOGIN -->
+        </div>
+
+
+    </div>
+</section>
+
+<!-- -->
+<section>
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LOGIN -->
+
+            <div class="col-md-12 col-sm-12">
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+                <!-- login form -->
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'sky-form boxed'}) do |f| %>
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <header class="fs-18 mb-20">
+                    I'm a returning customer
+                </header>
+
+                <fieldset class="m-0">
+                    <label class="input mb-10">
+                        <i class="ico-append fa fa-envelope"></i>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address", required: "required" %>
+                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                    </label>
+
+                    <label class="input mb-10">
+                        <i class="ico-append fa fa-lock"></i>
+                        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: "required" %>
+                        <b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+                    </label>
+                    <% if devise_mapping.rememberable? %>
+                    <label class="checkbox fw-300">
+                        <%= f.check_box :remember_me, name: "checkbox-inline" %>
+                        <i></i> Keep me logged in
+                    </label>
+                    <% end %>
+
+                </fieldset>
+
+                <footer>
+                    <%= button_tag(type: "submit", class: "btn btn-primary rad-0 float-right") do %>
+                    <i class="fa fa-check"></i> OK, LOG IN
+                    <% end %>
+                </footer>
+
+                <% end %>
+                <!-- /login form -->
+            </div>
+            <!-- /LOGIN -->
+        </div>
+
+
+    </div>
+</section>
+>>>>>>> 969e13094e831ca09e0457fec3e4755f1f7b6aac
+<!-- / -->

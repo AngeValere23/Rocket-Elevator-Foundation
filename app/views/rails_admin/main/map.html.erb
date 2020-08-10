@@ -1,0 +1,51 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GMAP_KEY"] %>&callback=initMap&libraries=&v=weekly" defer></script>
+
+<div id="map"></div>
+
+<script>
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 41.850033, lng: -87.6500523 },
+    zoom: 4
+  });
+    <% Building.all.each do |building| %>
+        marker = new google.maps.Marker({
+            position: {lat: <%= building.address.Lat %>, lng: <%= building.address.Lng %>},
+            icon: '/favicon.ico',
+            map: map,
+        });
+
+        marker.infowindow = new google.maps.InfoWindow({
+            content: '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"> Building #<%= building.id %></h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Address: </b> <%= building.address.NumberAndStreet %></br>' +
+            '<b>Number of Floors: </b> <%= building.battery.column.NumberOfFloor %></br>' +
+            '<b>Client Name: </b> <%= building.customer.FullNameOfContact %></br>' +
+            '<b>Number of Batteries: </b> 1 </br>' +
+            '<b>Number of Columns:</b> 1 </br>' +
+            '<b>Number of Elevators:</b> 1 </br>' +
+            '<b>Technician Name: </b> <%= building.BuildingTechFullName %></br>' +
+            '<b>Temperature:</b> <%= @weather_client.current_weather(city: building.address.City, units: 'metric').main.temp %> <small>C</small></br>' +
+            '<b>Wind Speed:</b> <%= @weather_client.current_weather(city: building.address.City, units: 'metric').wind.speed %> <small>KM/H</small></br>' +
+            '</div>'+
+            '</div>',
+        })
+
+        marker.addListener('click', function() {
+            this.infowindow.open(map, this);
+        });
+    <% end %>
+}
+</script>
+
+<style>
+#map {
+  height: 512px;
+}
+</style>

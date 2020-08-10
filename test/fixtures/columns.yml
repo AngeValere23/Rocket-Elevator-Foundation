@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Batterie: 
+  ProppertyType: MyString
+  NumberOfFloor: MyString
+  integer: MyString
+  Status: MyString
+  Informations: MyString
+  string: MyString
+  Notes: MyText
+
+two:
+  Batterie: 
+  ProppertyType: MyString
+  NumberOfFloor: MyString
+  integer: MyString
+  Status: MyString
+  Informations: MyString
+  string: MyString
+  Notes: MyText

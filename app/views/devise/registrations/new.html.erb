@@ -1,0 +1,152 @@
+<!-- -->
+<section>
+    <div class="container">
+
+        <div class="row">
+
+            <!-- REGISTER -->
+            <div class="col-md-12 col-sm-12">
+
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+                <div class="box-static box-transparent box-bordered p-30">
+
+                    <div class="box-title mb-30">
+                        <h2 class="fs-20">Don't have an account yet?</h2>
+                    </div>
+
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'm-0 sky-form'}) do |f| %>
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <fieldset>
+                        <div class="row">
+
+                            <div class="col-md-12 col-sm-12">
+                                <label for="register:email">Email *</label>
+                                <label class="input mb-10">
+                                    <i class="ico-append fa fa-envelope"></i>
+                                    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: "required" %>
+                                    <b class="tooltip tooltip-bottom-right">Your Email</b>
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-6">
+                                <label for="register:pass1">Password *</label>
+                                <label class="input mb-10">
+                                    <i class="ico-append fa fa-lock"></i>
+                                    <%= f.password_field :password, autocomplete: "new-password", required: "required" %>
+                                    <b class="tooltip tooltip-bottom-right">Min. 6 characters</b>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label for="register:pass2">Password Again *</label>
+                                <label class="input mb-10">
+                                    <i class="ico-append fa fa-lock"></i>
+                                    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: "required" %>
+                                    <b class="tooltip tooltip-bottom-right">Type the password again</b>
+                                </label>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                        <%= recaptcha_tags %>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> REGISTER</button>
+                        </div>
+                    </div>
+
+                    <% end %>
+
+                </div>
+
+            </div>
+            <!-- /REGISTER -->
+
+
+        </div>
+
+    </div>
+</section>
+=======
+<!-- -->
+<section>
+    <div class="container">
+
+        <div class="row">
+
+            <!-- REGISTER -->
+            <div class="col-md-12 col-sm-12">
+
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+                <div class="box-static box-transparent box-bordered p-30">
+
+                    <div class="box-title mb-30">
+                        <h2 class="fs-20">Don't have an account yet?</h2>
+                    </div>
+
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'm-0 sky-form'}) do |f| %>
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <fieldset>
+                        <div class="row">
+
+                            <div class="col-md-12 col-sm-12">
+                                <label for="register:email">Email *</label>
+                                <label class="input mb-10">
+                                    <i class="ico-append fa fa-envelope"></i>
+                                    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: "required" %>
+                                    <b class="tooltip tooltip-bottom-right">Your Email</b>
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-6">
+                                <label for="register:pass1">Password *</label>
+                                <label class="input mb-10">
+                                    <i class="ico-append fa fa-lock"></i>
+                                    <%= f.password_field :password, autocomplete: "new-password", required: "required" %>
+                                    <b class="tooltip tooltip-bottom-right">Min. 6 characters</b>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label for="register:pass2">Password Again *</label>
+                                <label class="input mb-10">
+                                    <i class="ico-append fa fa-lock"></i>
+                                    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: "required" %>
+                                    <b class="tooltip tooltip-bottom-right">Type the password again</b>
+                                </label>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> REGISTER</button>
+                        </div>
+                    </div>
+
+                    <% end %>
+
+                </div>
+
+            </div>
+            <!-- /REGISTER -->
+
+
+        </div>
+
+    </div>
+</section>
+>>>>>>> 969e13094e831ca09e0457fec3e4755f1f7b6aac
+<!-- / -->

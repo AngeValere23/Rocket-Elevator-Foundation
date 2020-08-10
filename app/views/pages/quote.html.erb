@@ -1,0 +1,118 @@
+<% content_for :for_head do %>
+<title>Rocket Elevators - Get a quote</title>
+<%= stylesheet_link_tag "layout-shop.css", media: "all", "data-turbolinks-track" => "reload" %>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div class="alert alert-info">
+    <%= msg %>
+  </div>
+<%end %>
+
+<!-- Header-->
+<section class="page-header page-header-xs">
+    <div class="container">
+        <h1>GET A QUOTE</h1>
+        <ol class="breadcrumb">
+            <li><a href="/#">Home</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a class="active" href="/quote#">Get a quote</a></li>
+        </ol>
+    </div>
+</section>
+<!-- Quote-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-sm-8">
+                <%= form_with(url: "/quote", :html => {:class => 'cartContent clearfix'} ) do %>
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-4"><label for="contact:name">Full Name</label><%= text_field_tag('fullname', nil, id: 'building-name', required: "required", class: "form-control") %></div>
+                        <div class="col-md-4"><label for="contact:email">E-mail Address</label><%= email_field_tag('email', nil, id: 'building-email',required: "required", class: "form-control") %></div>
+                        <div class="col-md-4"><label for="contact:phone">Phone</label><%= telephone_field_tag('phone', nil, id: 'building-phone', required: "required", class: "form-control") %></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label for="contact:subject">Business Name</label><%= text_field_tag('businessname', nil, id: 'building-business', required: "required", class: "form-control") %></div>
+                        <div class="col-md-4"><label for="contact:subject">Project Name</label><%= text_field_tag('projectname',nil, id: 'building-project', required: "required", class: "form-control") %></div>
+                        <div class="col-md-4"><label for="contact_department">Building Type</label><%= select_tag('buildingtype', options_for_select([['--- Select ---', ''], ['Residential', 'Residential'],['Commercial', 'Commercial'], ['Corporate', 'Corporate'], ['Hybrid', 'Hybrid']]), required: "required", class: "form-control pointer", id: 'building-select') %></div>
+                    </div>
+                    <hr />
+                    <!-- Residential-->
+                    <div class="row" id="residential-form">
+                        <div class="col-md-4"><label for="contact:subject">Number of apartment</label><%= number_field_tag('nbapartment',nil, id: 'residential-apartment', required: "required", class: "form-control") %></div>
+                        <div class="col-md-4"><label for="contact:subject">Number of floor</label><%= number_field_tag('nbfloor',nil, id: 'residential-floor', required: "required", class: "form-control") %></div>
+                        <div class="col-md-4"><label for="contact:subject">Number of basement</label><%= number_field_tag('nbbasement',nil, id: 'residential-basement', required: "required", class: "form-control") %></div>
+                    </div>
+                    <!-- Commercial-->
+                    <div id="commercial-form">
+                        <div class="row">
+                            <div class="col-md-4"><label for="contact:subject">Number of business</label><%= number_field_tag('nbbusiness',nil, id: 'commercial-business', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of floor</label><%= number_field_tag('nbfloor',nil, id: 'commercial-floor', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of basement</label><%= number_field_tag('nbbasement',nil, id: 'commercial-basement', required: "required", class: "form-control") %></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"><label for="contact:subject">Number of parking</label><%= number_field_tag('nbparking',nil, id: 'commercial-parking', required: "required", class: "form-control") %></div>
+                            <div class="col-md-6"><label for="contact:subject">Number of shaft</label><%= number_field_tag('nbshaft',nil, id: 'commercial-shaft', required: "required", class: "form-control") %></div>
+                        </div>
+                    </div>
+                    <!-- Corporate-->
+                    <div id="corporate-form">
+                        <div class="row">
+                            <div class="col-md-4"><label for="contact:subject">Number of companies</label><%= number_field_tag('nbcompanies',nil, id: 'corporate-companies', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of floor</label><%= number_field_tag('nbfloor',nil, id: 'corporate-floor', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of basement</label><%= number_field_tag('nbbasement',nil, id: 'corporate-basement', required: "required", class: "form-control") %></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"><label for="contact:subject">Number of parking</label><%= number_field_tag('nbparking',nil, id: 'corporate-parking', required: "required", class: "form-control") %></div>
+                            <div class="col-md-6"><label for="contact:subject">Number of occupant/floor</label><%= number_field_tag('nboccupant',nil, id: 'corporate-occupant', required: "required", class: "form-control") %></div>
+                        </div>
+                    </div>
+                    <!-- Hybrid-->
+                    <div id="hybrid-form">
+                        <div class="row">
+                            <div class="col-md-4"><label for="contact:subject">Number of business</label><%= number_field_tag('nbbusiness',nil, id: 'hybrid-business', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of floor</label><%= number_field_tag('nbfloor',nil, id: 'hybrid-floor', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of basement</label><%= number_field_tag('nbbasement',nil, id: 'hybrid-basement', required: "required", class: "form-control") %></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><label for="contact:subject">Number of parking</label><%= number_field_tag('nbparking',nil, id: 'hybrid-parking', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact:subject">Number of occupant/floor</label><%= number_field_tag('nboccupant',nil, id: 'hybrid-occupant', required: "required", class: "form-control") %></div>
+                            <div class="col-md-4"><label for="contact_department">Active hours/day</label><%= select_tag('activehours', options_for_select([['--- Select ---', ''], [0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[20],[21],[22],[23],[24]]), required: "required", class: "form-control pointer", id: 'hybrid-active') %></div>
+                        </div>
+                    </div>
+                    <!-- Quality-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="radio"><%= radio_button_tag('quality', 'standard', true, required: 'required') %><i></i>Standard</label>
+                            <label class="radio"><%= radio_button_tag('quality', 'premium', false, required: 'required') %><i></i>Premium</label>
+                            <label class="radio"><%= radio_button_tag('quality', 'excelium', false, required: 'required') %><i></i>Excelium</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <input type="hidden" id="nbelevator" name="nbelevator" value="">
+                <input type="hidden" id="elevatorprice" name="elevatorprice" value="">
+                <input type="hidden" id="subtotal" name="subtotal" value="">
+                <input type="hidden" id="installfee" name="installfee" value="">
+                <input type="hidden" id="total" name="total" value="">
+                <%= recaptcha_tags %>
+                <%= submit_tag("Submit", class: "btn btn-primary")  %>
+                <% end %>
+            </div>
+            <div class="col-lg-3 col-sm-4">
+                <div class="toggle-transparent toggle-bordered-full clearfix">
+                    <div class="toggle active">
+                        <div class="toggle-content"><span class="clearfix"><span class="float-right" id="elevator-number">--</span><span class="float-left">Number of elevator:</span></span><span class="clearfix"><span class="float-right" id="elevator-price">--</span><span class="float-left">Price/elevator:</span></span>
+                            <span class="clearfix"><span class="float-right" id="elevator-subtotal">--</span><span class="float-left">Subtotal:</span></span><span class="clearfix"><span class="float-right" id="elevator-fee">--</span><span class="float-left">Install fee:</span></span>
+                            <hr /><span class="clearfix"><span class="float-right fs-20" id="elevator-total">--</span><strong class="float-left">TOTAL:</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% content_for :for_foot do %>
+<%= javascript_include_tag "quote.js", "data-turbolinks-track" => "reload" %>
+<% end %>

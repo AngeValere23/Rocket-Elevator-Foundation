@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  SerialNumber: MyString
+  CommissioningDate: MyString
+  BuildingId: MyString
+  CustomerId: MyString
+  City: MyString
+
+two:
+  SerialNumber: MyString
+  CommissioningDate: MyString
+  BuildingId: MyString
+  CustomerId: MyString
+  City: MyString

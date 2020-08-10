@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fullname: MyString
+  email: MyString
+  phone: 1
+  businessname: MyString
+  projectname: MyString
+  buildingtype: 1
+  quality: 1
+  nbapartment: 1
+  nbfloor: 1
+  nbbasemenet: 1
+  nbbusiness: 1
+  nbparking: 1
+  nbshaft: 1
+  nboccupant: 1
+  nbcompanies: 1
+  activehours: 1
+  nbelevator: 1
+  elevatorprice: 1.5
+  subtotal: 1.5
+  installfee: 1.5
+  total: 1.5
+
+two:
+  fullname: MyString
+  email: MyString
+  phone: 1
+  businessname: MyString
+  projectname: MyString
+  buildingtype: 1
+  quality: 1
+  nbapartment: 1
+  nbfloor: 1
+  nbbasemenet: 1
+  nbbusiness: 1
+  nbparking: 1
+  nbshaft: 1
+  nboccupant: 1
+  nbcompanies: 1
+  activehours: 1
+  nbelevator: 1
+  elevatorprice: 1.5
+  subtotal: 1.5
+  installfee: 1.5
+  total: 1.5

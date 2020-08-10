@@ -1,0 +1,39 @@
+<div class="navbar-toggleable-md sticky header-md clearfix" id="header">
+    <header id="topNav">
+        <div class="container">
+            <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse"><i class="fa fa-bars"></i></button><a class="logo flat-left scrollTo" href="/"><img src="/assets/rocket_elevators/logo.png"></a>
+            <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+                <nav class="nav-main">
+                    <ul class="nav nav-pills nav-main" id="topMain">
+                        <li><%= link_to "Home", root_path %></li>
+                        <li class="dropdown"><a class="dropdown-toggle">Services</a>
+                            <ul class="dropdown-menu">
+                                <li><%= link_to "Residential", residential_path %></li>
+                                <li><%= link_to "Corporate", corporate_path %></li>
+                                <li><%= link_to "Get a quote", quote_path %></li>
+                            </ul>
+                        </li>
+                        <li><%= link_to "Portfolio", root_path(anchor: "work") %></li>
+                        <li><%= link_to "News", root_path(anchor: "news") %></li>
+                        <li><%= link_to "Clients", root_path(anchor: "clients") %></li>
+                        <li><%= link_to "Contact", root_path(anchor: "contact") %></li>
+                        <li class="dropdown"><a class="dropdown-toggle">Account</a>
+                            <ul class="dropdown-menu">
+                                <% if current_user.present? %>
+                                <% if can? :access, :rails_admin %>
+                                <li><%= link_to "Backoffice", rails_admin_path %></li>
+                                <% end %>
+                                <li><%= link_to('Edit account', edit_user_registration_path) %></li>
+                                <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+                                <%else%>
+                                <li><%= link_to "Sign in", new_user_session_path %></li>
+                                <li><%= link_to "Sign up", new_user_registration_path %></li>
+                                <% end %>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+</div>

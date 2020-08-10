@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  TypeOfAdress: MyString
+  Status: MyString
+  Entity: MyString
+  NumberAndStreet: MyString
+  string: MyString
+  SuiteOrApart: MyString
+  integer: MyString
+  City: MyString
+  PostalCode: MyString
+  Country: MyString
+  Notes: MyText
+
+two:
+  TypeOfAdress: MyString
+  Status: MyString
+  Entity: MyString
+  NumberAndStreet: MyString
+  string: MyString
+  SuiteOrApart: MyString
+  integer: MyString
+  City: MyString
+  PostalCode: MyString
+  Country: MyString
+  Notes: MyText
