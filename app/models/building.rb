@@ -4,4 +4,5 @@ class Building < ApplicationRecord
 
   has_one :building_detail
   has_one :battery
+  has_many :intervention, foreign_key: :BuildingID
 end

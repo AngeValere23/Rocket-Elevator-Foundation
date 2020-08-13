@@ -9,6 +9,7 @@ require 'dotenv'
 
 class Elevator < ApplicationRecord
   belongs_to :column
+  has_many :intervention, foreign_key: :ElevatorID
   before_save :send_txt
   before_update :slack_notifier
 

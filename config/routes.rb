@@ -27,4 +27,8 @@ Rails.application.routes.draw do
   post '/starwars' => 'pages#star_wars'
 
   get "pages/index"
+
+  get '/intervention' => 'pages#intervention'
+  get '/intervention/get_data' => 'pages#intervention_get_data'
+  post 'intervention' => 'pages#post_intervention'
 end

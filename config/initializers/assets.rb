@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w( red.css )
 Rails.application.config.assets.precompile += %w( scripts.js )
 Rails.application.config.assets.precompile += %w( newsletter.js )
 Rails.application.config.assets.precompile += %w( quote.js )
+Rails.application.config.assets.precompile += %w( intervention.js )
 Rails.application.config.assets.precompile += %w( revolution_slider.js )
 Rails.application.config.assets.precompile += %w( layout-shop.css )
 

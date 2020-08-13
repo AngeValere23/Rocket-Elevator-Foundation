@@ -10,11 +10,82 @@ class PagesController < ApplicationController
   
   def residential
   end
+
+  def intervention
+    if !is_employee? then
+      return redirect_to root_path
+    end
+  end
+
+  def intervention_get_data
+    id = request.query_parameters["id"]
+    value = request.query_parameters["value"]
+
+    @data = ""
+    case value
+    when "building"
+      @data = Building.where(customer: id)
+    when "battery"
+      @data = Battery.where(building: id)
+    when "column"
+      @data = Column.where(battery: id)
+    when "elevator"
+      @data = Elevator.where(column: id)
+    else
+      @data = ""
+    end
+    
+    return render json: @data
+  end
+
+  def post_intervention
+    # Only employee can post
+    if !is_employee? then
+      return redirect_to root_path
+    end
+    # Verify recaptcha
+    if !verify_recaptcha()
+      return redirect_to root_path, notice: "Recaptcha failed !"
+    end
+
+    intervention_params = params.except(:authenticity_token, :controller, :action, :utf8, :commit, "g-recaptcha-response")
+    intervention_params.permit!
+
+	
+    # Save intervention
+    @intervention = Intervention.create(AuthorID: Employee.where(:user_id => current_user.id).first,:CustomerID_id => to_number(params[:customer]), :BuildingID_id => to_number(params[:building]), :BatteryID_id => to_number(params[:battery]), :ColumnID_id => to_number(params[:column]), :ElevatorID_id => to_number(params[:elevator]), :EmployeeID_id => params[:employee], :Report => params[:description]) 
+    @intervention.save!
+
+    ZendeskAPI::Ticket.create!($client, 
+        :type => "Problem", 
+          :subject => "Intervention needed", 
+            :comment => { 
+              :value => "#{Employee.where(id: @intervention.AuthorID).first.firstname} 
+                #{Employee.where(id: @intervention.AuthorID).first.lastname} create intervention for 
+                #{@intervention.CustomerID.CompanyName} in the building #{@intervention.BuildingID} on battery 
+                #{intervention_params[:battery]}, the elevator #{intervention_params[:elevator]} on column #{intervention_params[:column]} need to be fixed by 
+                #{@intervention.EmployeeID.firstName} #{@intervention.EmployeeID.lastName}. The description is: #{@intervention.Report} " 
+              },
+                :priority => "urgent",
+                :type => "task"
+              )
+
+
+    # Redirect to confirm
+    flash[:notice] = "Your message has been sent "
+    redirect_to root_path
+  end
+  
+  def to_number(string)
+    Integer(string || '')
+  rescue ArgumentError
+    nil
+  end
   
   def post_quote
     # Verify recaptcha
     if !verify_recaptcha()
-      return redirect_to :post_quote, notice: "Recaptcha failed !"
+      return redirect_to :root_path, notice: "Recaptcha failed !"
     end
 
     # Get data from the form and omit unecessary data
