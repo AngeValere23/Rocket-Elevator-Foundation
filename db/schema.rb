@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_172554) do
+ActiveRecord::Schema.define(version: 2020_08_13_190618) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "TypeOfAddress"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2020_08_12_172554) do
   end
 
   create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "AuthorID", null: false
+    t.bigint "AuthorID_id"
     t.bigint "CustomerID_id"
     t.bigint "BuildingID_id"
     t.bigint "BatteryID_id"
@@ -130,12 +130,12 @@ ActiveRecord::Schema.define(version: 2020_08_12_172554) do
     t.bigint "EmployeeID_id"
     t.datetime "InterventionStart"
     t.datetime "InterventionEnd"
-    t.string "Result"
+    t.string "Result", default: "incomplete"
     t.string "Report"
-    t.string "Status"
+    t.string "Status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["AuthorID"], name: "index_interventions_on_AuthorID"
+    t.index ["AuthorID_id"], name: "index_interventions_on_AuthorID_id"
     t.index ["BatteryID_id"], name: "index_interventions_on_BatteryID_id"
     t.index ["BuildingID_id"], name: "index_interventions_on_BuildingID_id"
     t.index ["ColumnID_id"], name: "index_interventions_on_ColumnID_id"
@@ -209,10 +209,4 @@ ActiveRecord::Schema.define(version: 2020_08_12_172554) do
   add_foreign_key "customers", "users"
   add_foreign_key "elevators", "columns"
   add_foreign_key "employees", "users"
-  add_foreign_key "interventions", "batteries", column: "BatteryID_id"
-  add_foreign_key "interventions", "buildings", column: "BuildingID_id"
-  add_foreign_key "interventions", "columns", column: "ColumnID_id"
-  add_foreign_key "interventions", "customers", column: "CustomerID_id"
-  add_foreign_key "interventions", "elevators", column: "ElevatorID_id"
-  add_foreign_key "interventions", "employees", column: "EmployeeID_id"
 end

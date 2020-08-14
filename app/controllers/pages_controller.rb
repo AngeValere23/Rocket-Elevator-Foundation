@@ -51,25 +51,34 @@ class PagesController < ApplicationController
     intervention_params = params.except(:authenticity_token, :controller, :action, :utf8, :commit, "g-recaptcha-response")
     intervention_params.permit!
 
-	
+    i = OpenStruct.new({AuthorID_id: Employee.find(current_user.id), CustomerID_id: Customer.find(intervention_params["customer"]), BuildingID_id: Building.find(intervention_params["building"]), BatteryID_id: Battery.find(intervention_params["battery"]), ColumnID_id: Column.find(intervention_params["column"]), ElevatorID_id: Elevator.find(intervention_params["elevator"]), EmployeeID_id: Employee.find(intervention_params["employee"]), Report: intervention_params["report"]})
+    
+    
     # Save intervention
-    @intervention = Intervention.create(AuthorID: Employee.where(:user_id => current_user.id).first,:CustomerID_id => to_number(params[:customer]), :BuildingID_id => to_number(params[:building]), :BatteryID_id => to_number(params[:battery]), :ColumnID_id => to_number(params[:column]), :ElevatorID_id => to_number(params[:elevator]), :EmployeeID_id => params[:employee], :Report => params[:description]) 
+    @intervention = Intervention.create(i.to_h)
     @intervention.save!
 
-    ZendeskAPI::Ticket.create!($client, 
-        :type => "Problem", 
-          :subject => "Intervention needed", 
-            :comment => { 
-              :value => "#{Employee.where(id: @intervention.AuthorID).first.firstname} 
-                #{Employee.where(id: @intervention.AuthorID).first.lastname} create intervention for 
-                #{@intervention.CustomerID.CompanyName} in the building #{@intervention.BuildingID} on battery 
-                #{intervention_params[:battery]}, the elevator #{intervention_params[:elevator]} on column #{intervention_params[:column]} need to be fixed by 
-                #{@intervention.EmployeeID.firstName} #{@intervention.EmployeeID.lastName}. The description is: #{@intervention.Report} " 
-              },
-                :priority => "urgent",
-                :type => "task"
-              )
-
+   
+ # Intervention Zendesk
+ ZendeskAPI::Ticket.create!($client,
+ :subject =>  "Intervention needed from #{Employee.find(current_user.id).fullname}",
+  :comment => { 
+    :value => "#{Customer.find(intervention_params["customer"]).CompanyName} just created an intervention to fix some problem.
+    Here are some information : 
+    An intervention in Building : #{intervention_params["building"]}
+    on Battery : #{intervention_params["battery"]}, 
+    Column id is : #{intervention_params["column"]}
+    the Elevator : #{intervention_params["elevator"]}
+    need to be fixed by The employee : #{Employee.find(intervention_params["employee"]).fullname}!
+    Here is the description : #{intervention_params["report"]}"
+  },
+  :requester => { 
+    "name": Employee.find(current_user.id).fullname, 
+    "email": current_user.email
+},
+    :priority => "urgent",
+    :type => "problem"
+  )
 
     # Redirect to confirm
     flash[:notice] = "Your message has been sent "

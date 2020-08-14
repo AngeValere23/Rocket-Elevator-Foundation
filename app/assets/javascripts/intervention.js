@@ -1,6 +1,6 @@
 $(document).ready(function () {
     hideFromCustomer();
-    // Customer select change
+    // Customer select dropdown
     $("#customer-select").change(async function (event) {
       event.stopImmediatePropagation();
       const value = $(this).val();
@@ -16,7 +16,7 @@ $(document).ready(function () {
         $("#building-select").html(buildings);
       }
     });
-    // Building select change
+    // Building select dropdown
     $("#building-select").change(async function (event) {
       event.stopImmediatePropagation();
       const value = $(this).val();
@@ -33,7 +33,7 @@ $(document).ready(function () {
         $("#battery-select").html(batteries);
       }
     });
-    // Battery select change
+    // Battery select dropdown
     $("#battery-select").change(async function (event) {
       event.stopImmediatePropagation();
       const value = $(this).val();
@@ -50,7 +50,7 @@ $(document).ready(function () {
         $("#column-select").html(columns);
       }
     });
-    // Column select change
+    // Column select dropdown
     $("#column-select").change(async function (event) {
       event.stopImmediatePropagation();
       const value = $(this).val();
@@ -68,7 +68,7 @@ $(document).ready(function () {
       }
     });
   
-    // Hide functions
+    // functions hiding
     function hideFromCustomer() {
       $("#building-select").hide();
       hideFromBuilding();

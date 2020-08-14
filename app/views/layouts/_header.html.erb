@@ -23,6 +23,9 @@
                                 <% if can? :access, :rails_admin %>
                                 <li><%= link_to "Backoffice", rails_admin_path %></li>
                                 <% end %>
+                                <% if is_employee? %>
+                                <li><%= link_to "Intervention", intervention_path %></li>
+                                <%end %>
                                 <li><%= link_to('Edit account', edit_user_registration_path) %></li>
                                 <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
                                 <%else%>

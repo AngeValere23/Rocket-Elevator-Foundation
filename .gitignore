@@ -27,10 +27,10 @@
 
 .DS_Store
 
-Rocket_Elevators_Information_System_development
-Rocket_Elevators_Information_System_test
-warehouse_development
-warehouse_test
+Rocket_Elevators_Foundation_development
+Rocket_Elevators_Foundation_test
+foundation
+foundation
 
-config/local_env.yml
-config/connection.yml
+config/application.yml
+config/database.yml
